@@ -12,6 +12,8 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter
 import kotlinx.android.synthetic.main.activity_splash.*
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 
 class SplashActivity : AppCompatActivity() {
 
@@ -20,15 +22,12 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
-        playStreamVideo("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+        // val videoUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+        val videoUrl = "http://playlist.onlybest.tv/ru/channel/d0f21a70397d3659fe259aa5e2a62107/70/index.m3u8"
+        playStreamVideo(videoUrl)
     }
 
     fun playStreamVideo(url: String) {
-        val dataSourceFactory
-                = DefaultDataSourceFactory(this,
-                                           Util.getUserAgent(this,
-                                                             "mediaPlayerSample"))
-
         val videoTrackSelectionFactory
                 = AdaptiveTrackSelection.Factory(BandwidthMeter { 5000 })
 
@@ -38,11 +37,17 @@ class SplashActivity : AppCompatActivity() {
         playerView.player = player
         player.playWhenReady = true
 
-        val extractorsFactory = DefaultExtractorsFactory()
+        val bandwidthMeter = DefaultBandwidthMeter()
 
-        val mediaSource =
-                ExtractorMediaSource(Uri.parse(url),
-                                     dataSourceFactory, extractorsFactory, null, null)
-        player.prepare(mediaSource)
+        val dataSourceFactory
+                = DefaultDataSourceFactory(this,
+                                           Util.getUserAgent(this,
+                                                             "mediaPlayerSample"),
+                                           bandwidthMeter)
+
+        val videoSource = ExtractorMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.parse(url))
+
+        player.prepare(videoSource)
     }
 }
