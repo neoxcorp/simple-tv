@@ -22,10 +22,18 @@ android {
 }
 
 dependencies {
+    def support = "27.1.1"
+    def exoPlayer = "2.7.3"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:support-v4:$support"
+
+    implementation "com.google.android.exoplayer:exoplayer:$exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exoPlayer"
 }
