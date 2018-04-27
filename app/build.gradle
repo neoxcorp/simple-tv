@@ -32,8 +32,11 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support"
     implementation "com.android.support:support-v4:$support"
 
+    // exo player
     implementation "com.google.android.exoplayer:exoplayer:$exoPlayer"
     implementation "com.google.android.exoplayer:exoplayer-core:$exoPlayer"
     implementation "com.google.android.exoplayer:exoplayer-dash:$exoPlayer"
     implementation "com.google.android.exoplayer:exoplayer-ui:$exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-hls:$exoPlayer"
 }
