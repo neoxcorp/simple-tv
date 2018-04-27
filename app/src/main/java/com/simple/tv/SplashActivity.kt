@@ -56,6 +56,7 @@ class SplashActivity : AppCompatActivity() {
         val player = ExoPlayerFactory.newSimpleInstance(this, trackSelector)
 
         playerView.player = player
+        playerView.useController = false
         player.playWhenReady = true
 
         val bandwidthMeter = DefaultBandwidthMeter()
