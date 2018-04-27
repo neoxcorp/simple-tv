@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 
 class SplashActivity : AppCompatActivity() {
@@ -45,9 +46,11 @@ class SplashActivity : AppCompatActivity() {
                                                              "mediaPlayerSample"),
                                            bandwidthMeter)
 
+        val hlsMediaSource = HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
+
         val videoSource = ExtractorMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(Uri.parse(url))
 
-        player.prepare(videoSource)
+        player.prepare(hlsMediaSource)
     }
 }
