@@ -63,7 +63,6 @@ class SplashActivity : AppCompatActivity() {
                 progressBar.visibility = INVISIBLE
                 tryAgainAppCompatButton.visibility = VISIBLE
                 infoMessageAppCompatTextView.text = "Something went wrong"
-                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 it.printStackTrace()
             })
     }
