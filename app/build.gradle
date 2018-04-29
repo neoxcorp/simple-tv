@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -61,7 +60,7 @@ dependencies {
     // network
     implementation "com.koushikdutta.ion:ion:$ion"
     implementation "com.github.bumptech.glide:glide:$glide"
-    kapt "com.github.bumptech.glide:compiler:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
 
     // ui
     implementation "de.hdodenhof:circleimageview:$circleImageView"
