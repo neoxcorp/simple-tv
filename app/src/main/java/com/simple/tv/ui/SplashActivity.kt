@@ -1,4 +1,4 @@
-package com.simple.tv
+package com.simple.tv.ui
 
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
+import com.simple.tv.R
 import com.simple.tv.data.ContentManager
 
 class SplashActivity : AppCompatActivity() {
