@@ -5,10 +5,14 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 import com.simple.tv.R
 import kotlinx.android.synthetic.main.item_channel.view.*
+import java.io.Serializable
 
-class ChannelItem(val name: String,
-                  val sorceUrl: String,
-                  val imageSource: String? = null) : AbstractItem<ChannelItem, ChannelItem.ViewHolder>() {
+class ChannelItem(
+    val name: String,
+    val sorceUrl: String,
+    val imageSource: String? = null
+) : AbstractItem<ChannelItem, ChannelItem.ViewHolder>(),
+    Serializable {
 
     override fun getType() = R.id.rootCardView
 
