@@ -2,8 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.simple.tv"
         minSdkVersion 19
@@ -13,6 +16,7 @@ android {
 
         buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/things/orG5.json"'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -73,6 +77,11 @@ dependencies {
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko"
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko"
+
+    // debug
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
+        transitive = true
+    }
 }
 
 kotlin {
