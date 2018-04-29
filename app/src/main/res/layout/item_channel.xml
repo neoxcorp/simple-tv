@@ -8,6 +8,7 @@
     android:id="@+id/rootCardView"
     app:cardBackgroundColor="@android:color/darker_gray"
     android:clickable="true"
+    android:layout_margin="4dp"
     android:focusable="true"
     app:cardCornerRadius="6dp">
 
@@ -17,7 +18,7 @@
             android:layout_height="144dp"
             android:layout_gravity="center"
             android:background="@android:color/darker_gray"
-            android:src="@mipmap/ic_launcher"/>
+            tools:src="@drawable/ic_logo_small"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/nameAppCompatTextView"

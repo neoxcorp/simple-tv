@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -30,6 +31,7 @@ dependencies {
     def circleImageView = '2.2.0'
     def anko = '0.10.5'
     def fastAdapter = '3.2.5'
+    def glide = '4.6.1'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -56,8 +58,10 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exoPlayer"
     implementation "com.google.android.exoplayer:exoplayer-hls:$exoPlayer"
 
-    // rest
+    // network
     implementation "com.koushikdutta.ion:ion:$ion"
+    implementation "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
 
     // ui
     implementation "de.hdodenhof:circleimageview:$circleImageView"

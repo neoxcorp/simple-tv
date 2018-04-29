@@ -49,7 +49,7 @@ class ContentManager(val context: Context) {
         val channels = arrayListOf<ChannelItem>()
 
         response.tv_list.forEach {
-            channels.add(ChannelItem(it.name, it.stream_url))
+            channels.add(ChannelItem(it.name, it.stream_url, it.image_url))
         }
 
         return Data(channels)

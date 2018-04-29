@@ -4,13 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.util.Log
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.simple.tv.ui.channels.adapter.ChannelItem
 import com.simple.tv.ui.channels.types.Data
 import org.jetbrains.anko.*
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class ChannelsActivity : AppCompatActivity() {
 
     private val TAG = "ChannelsActivity"
+
+    private lateinit var fastAdapter: FastAdapter<ChannelItem>
+    private val itemAdapter: ItemAdapter<ChannelItem> = ItemAdapter()
 
     companion object {
         private val DATA_CHANNELS = "DATA_CHANNELS"
@@ -37,31 +45,21 @@ class ChannelsActivity : AppCompatActivity() {
         val data = intent.extras[DATA_CHANNELS] as Data
 
         Log.i(TAG, "handleIntent -> data.channels.size: ${data.channels.size}")
+
+        itemAdapter.set(data.channels)
     }
 
     private fun buildLayout() {
         Log.i(TAG, "buildLayout")
 
+        fastAdapter = FastAdapter.with(mutableListOf(itemAdapter))
+
         frameLayout {
             padding = dip(16)
-            /*recyclerView {
-
-            }*/
+            recyclerView {
+                layoutManager = GridLayoutManager(this@ChannelsActivity, 4)
+                adapter = fastAdapter
+            }
         }
-
-        /*verticalLayout {
-            padding = dip(30)
-            editText {
-                hint = "Name"
-                textSize = 24f
-            }
-            editText {
-                hint = "Password"
-                textSize = 24f
-            }
-            button("Login") {
-                textSize = 26f
-            }
-        }*/
     }
 }

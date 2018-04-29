@@ -1,6 +1,7 @@
 package com.simple.tv.ui.channels.adapter
 
 import android.view.View
+import com.bumptech.glide.Glide
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 import com.simple.tv.R
@@ -24,13 +25,18 @@ class ChannelItem(
 
         override fun unbindView(item: ChannelItem) {
             view.nameAppCompatTextView.text = ""
+
+            Glide.with(view.iconAppCompatImageView)
+                .clear(view.iconAppCompatImageView)
         }
 
         override fun bindView(item: ChannelItem, payloads: MutableList<Any>?) {
             view.nameAppCompatTextView.text = item.name
 
             item.imageSource?.let {
-                // TODO load image
+                Glide.with(view.iconAppCompatImageView)
+                    .load(it)
+                    .into(view.iconAppCompatImageView)
             }
         }
 
