@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
 import com.simple.tv.BuildConfig
 import com.simple.tv.data.dto.Response
+import com.simple.tv.ui.channels.adapter.ChannelItem
+import com.simple.tv.ui.channels.types.Data
 
 class ContentManager(val context: Context) {
 
@@ -16,7 +18,7 @@ class ContentManager(val context: Context) {
     }
 
     fun getListChannels(
-        success: (response: Response) -> Unit,
+        success: (channels: Data) -> Unit,
         error: (exception: Exception) -> Unit
     ) {
         Log.e(TAG, "getContent")
@@ -28,7 +30,7 @@ class ContentManager(val context: Context) {
                 Log.i(TAG, "result: $result")
 
                 result?.let {
-                    success.invoke(it)
+                    success.invoke(convertToData(it))
                 } ?: run {
                     error.invoke(Exception("Empty list"))
                 }
@@ -39,5 +41,17 @@ class ContentManager(val context: Context) {
                     error.invoke(it)
                 }
             })
+    }
+
+    private fun convertToData(response: Response): Data {
+        Log.e(TAG, "convertToChannelItem -> response: $response")
+
+        val channels = arrayListOf<ChannelItem>()
+
+        response.tv_list.forEach {
+            channels.add(ChannelItem(it.name, it.stream_url, it.image_url))
+        }
+
+        return Data(channels)
     }
 }

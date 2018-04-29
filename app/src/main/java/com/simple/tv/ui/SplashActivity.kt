@@ -8,8 +8,9 @@ import android.view.View.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import com.simple.tv.R
 import com.simple.tv.data.ContentManager
-import com.simple.tv.data.dto.Response
 import com.simple.tv.ui.channels.ChannelsActivity
+import com.simple.tv.ui.channels.adapter.ChannelItem
+import com.simple.tv.ui.channels.types.Data
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
@@ -49,7 +50,7 @@ class SplashActivity : AppCompatActivity() {
         Log.i(TAG, "getContent")
 
         ContentManager(this).getListChannels({
-            if (it.tv_list.isNotEmpty()) {
+            if (it.channels.isNotEmpty()) {
                 openChannels(it)
             } else {
                 progressBar.visibility = INVISIBLE
@@ -65,12 +66,12 @@ class SplashActivity : AppCompatActivity() {
             })
     }
 
-    private fun openChannels(dataChannels: Response) {
-        Log.i(TAG, "openChannels -> channels: ${dataChannels.tv_list.size}")
+    private fun openChannels(channels: Data) {
+        Log.i(TAG, "openChannels -> channels: ${channels.channels.size}")
 
         launch(UI) {
             delay(200)
-            startActivity(ChannelsActivity.newInstance(this@SplashActivity, dataChannels))
+            startActivity(ChannelsActivity.newInstance(this@SplashActivity, channels))
         }
     }
 }
