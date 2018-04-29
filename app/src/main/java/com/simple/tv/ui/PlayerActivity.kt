@@ -2,13 +2,27 @@ package com.simple.tv.ui
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.android.exoplayer2.ExoPlayerFactory
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.upstream.BandwidthMeter
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.Util
+import com.simple.tv.R
+import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : AppCompatActivity() {
 
     private val TAG = "PlayerActivity"
+
+    private lateinit var player: SimpleExoPlayer
 
     companion object {
         private val SOURCE_URL = "SOURCE_URL"
@@ -24,6 +38,7 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_player)
 
         intent.extras.getString(SOURCE_URL, null)?.let {
             playStreamVideo(it)
@@ -33,12 +48,12 @@ class PlayerActivity : AppCompatActivity() {
 
 
     private fun playStreamVideo(url: String) {
-        Log.e(TAG, "getContent -> url: $url")
+        Log.e(TAG, "playStreamVideo -> url: $url")
 
-        /*val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(BandwidthMeter { 5000 })
+        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(BandwidthMeter { 5000 })
 
         val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-        val player = ExoPlayerFactory.newSimpleInstance(this, trackSelector)
+        player = ExoPlayerFactory.newSimpleInstance(this, trackSelector)
 
         playerView.player = player
         playerView.useController = false
@@ -59,8 +74,12 @@ class PlayerActivity : AppCompatActivity() {
             HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
 
         player.prepare(hlsMediaSource)
+    }
 
-        playerView.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE*/
+    override fun onDestroy() {
+        super.onDestroy()
+
+        player.stop()
+        player.release()
     }
 }

@@ -6,11 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
-import android.view.View
 import com.mikepenz.fastadapter.FastAdapter
-import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
-import com.mikepenz.fastadapter.listeners.OnClickListener
 import com.simple.tv.ui.PlayerActivity
 import com.simple.tv.ui.channels.adapter.ChannelItem
 import com.simple.tv.ui.channels.types.Data
