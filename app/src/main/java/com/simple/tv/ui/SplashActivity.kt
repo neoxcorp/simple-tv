@@ -1,23 +1,16 @@
 package com.simple.tv.ui
 
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.widget.Toast
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
-import com.google.android.exoplayer2.upstream.BandwidthMeter
+import android.view.View.*
 import kotlinx.android.synthetic.main.activity_splash.*
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.simple.tv.R
 import com.simple.tv.data.ContentManager
+import com.simple.tv.data.dto.Channel
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -28,60 +21,47 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
+        setupTryAgain()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         getContent()
     }
 
-    fun getContent() {
-        Log.e(TAG, "getContent")
+    private fun setupTryAgain() {
+        Log.i(TAG, "setupTryAgain")
 
-        /*ContentManager(this).getFirstChannel({
-            playStreamVideo(it)
-        },
-            {
-                progressBar.visibility = GONE
-                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                it.printStackTrace()
-            })*/
+        tryAgainAppCompatButton.setOnClickListener {
+            getContent()
+
+            progressBar.visibility = VISIBLE
+            tryAgainAppCompatButton.visibility = INVISIBLE
+            infoMessageAppCompatTextView.text = getString(R.string.loading)
+        }
+    }
+
+    private fun getContent() {
+        Log.i(TAG, "getContent")
 
         ContentManager(this).getListChannels({
-            playStreamVideo(it[0].stream_url)
+            openChannels(it)
         },
             {
-                progressBar.visibility = GONE
-                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = INVISIBLE
+                tryAgainAppCompatButton.visibility = VISIBLE
+                infoMessageAppCompatTextView.text = it.message
                 it.printStackTrace()
             })
     }
 
-    fun playStreamVideo(url: String) {
-        Log.e(TAG, "getContent -> url: $url")
+    private fun openChannels(channels: List<Channel>) {
+        Log.i(TAG, "openChannels -> channels: ${channels.size}")
 
-        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(BandwidthMeter { 5000 })
-
-        val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-        val player = ExoPlayerFactory.newSimpleInstance(this, trackSelector)
-
-        playerView.player = player
-        playerView.useController = false
-        player.playWhenReady = true
-
-        val bandwidthMeter = DefaultBandwidthMeter()
-
-        val dataSourceFactory = DefaultDataSourceFactory(
-            this,
-            Util.getUserAgent(
-                this,
-                "mediaPlayerSample"
-            ),
-            bandwidthMeter
-        )
-
-        val hlsMediaSource =
-            HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
-
-        player.prepare(hlsMediaSource)
-
-        playerView.visibility = VISIBLE
-        progressBar.visibility = GONE
+        launch(UI) {
+            delay(200)
+            // startActivity(ChannelsActivity.)
+        }
     }
 }

@@ -28,6 +28,8 @@ dependencies {
     def exoPlayer = "2.7.3"
     def ion = "2.2.1"
     def coroutines = "0.22.5"
+    def constraintLayoutVersion = '1.1.0'
+    def circleImageView = '2.2.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -36,6 +38,7 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$support"
     implementation "com.android.support:support-v4:$support"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
     // exo player
     implementation "com.google.android.exoplayer:exoplayer:$exoPlayer"
@@ -47,4 +50,7 @@ dependencies {
 
     // rest
     implementation "com.koushikdutta.ion:ion:$ion"
+
+    // ui
+    implementation "de.hdodenhof:circleimageview:$circleImageView"
 }
