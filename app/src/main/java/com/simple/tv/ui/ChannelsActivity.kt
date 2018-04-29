@@ -26,6 +26,7 @@ class ChannelsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        buildLayout()
         handleIntent(intent)
     }
 
@@ -35,5 +36,9 @@ class ChannelsActivity : AppCompatActivity() {
         val dataChannels = intent.extras[DATA_CHANNELS] as Response
 
         Log.i(TAG, "handleIntent -> dataChannels.tv_list.size: ${dataChannels.tv_list.size}")
+    }
+
+    private fun buildLayout() {
+        Log.i(TAG, "buildLayout")
     }
 }
