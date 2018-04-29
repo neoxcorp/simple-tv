@@ -28,6 +28,7 @@ dependencies {
     def coroutines = "0.22.5"
     def constraintLayoutVersion = '1.1.0'
     def circleImageView = '2.2.0'
+    def anko = '0.10.4'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -51,6 +52,13 @@ dependencies {
 
     // ui
     implementation "de.hdodenhof:circleimageview:$circleImageView"
+
+    // anko
+    implementation "org.jetbrains.anko:anko:$anko"
+    implementation "org.jetbrains.anko:anko-design:$anko"
+    implementation "org.jetbrains.anko:anko-cardview-v7:$anko"
+    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko"
+    implementation "org.jetbrains.anko:anko-constraint-layout:$anko"
 }
 
 kotlin {
