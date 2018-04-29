@@ -28,7 +28,7 @@ dependencies {
     def coroutines = "0.22.5"
     def constraintLayoutVersion = '1.1.0'
     def circleImageView = '2.2.0'
-    def anko = '0.10.4'
+    def anko = '0.10.5'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
