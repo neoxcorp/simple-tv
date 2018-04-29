@@ -10,7 +10,7 @@ import java.io.Serializable
 
 class ChannelItem(
     val name: String,
-    val sorceUrl: String,
+    val sourceUrl: String,
     val imageSource: String? = null
 ) : AbstractItem<ChannelItem, ChannelItem.ViewHolder>(),
     Serializable {
