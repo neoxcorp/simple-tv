@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ChannelsActivity"
+            android:name=".ui.channels.ChannelsActivity"
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme"/>
         <activity

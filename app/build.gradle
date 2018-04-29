@@ -28,7 +28,8 @@ dependencies {
     def coroutines = "0.22.5"
     def constraintLayoutVersion = '1.1.0'
     def circleImageView = '2.2.0'
-    def anko = '0.10.4'
+    def anko = '0.10.5'
+    def fastAdapter = '3.2.5'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -37,6 +38,14 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$support"
     implementation "com.android.support:support-v4:$support"
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:design:$support"
+    implementation "com.android.support:support-v4:$support"
+    implementation "com.android.support:cardview-v7:$support"
+    implementation "com.android.support:recyclerview-v7:$support"
+    implementation "com.android.support:percent:$support"
+    implementation "com.android.support:support-vector-drawable:$support"
+    implementation "com.android.support:exifinterface:$support"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
     // exo player
@@ -52,8 +61,10 @@ dependencies {
 
     // ui
     implementation "de.hdodenhof:circleimageview:$circleImageView"
-
-    // anko
+    implementation "com.mikepenz:fastadapter:${fastAdapter}@aar"
+    implementation "com.mikepenz:fastadapter-commons:${fastAdapter}@aar"
+    implementation "com.mikepenz:fastadapter-extensions:${fastAdapter}@aar"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${fastAdapter}@aar"
     implementation "org.jetbrains.anko:anko:$anko"
     implementation "org.jetbrains.anko:anko-design:$anko"
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko"
