@@ -1,4 +1,4 @@
-package com.simple.tv.ui
+package com.simple.tv.ui.channels
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.simple.tv.data.dto.Response
+import org.jetbrains.anko.*
 
 class ChannelsActivity : AppCompatActivity() {
 
@@ -40,5 +41,27 @@ class ChannelsActivity : AppCompatActivity() {
 
     private fun buildLayout() {
         Log.i(TAG, "buildLayout")
+
+        frameLayout {
+            padding = dip(16)
+            /*recyclerView {
+
+            }*/
+        }
+
+        /*verticalLayout {
+            padding = dip(30)
+            editText {
+                hint = "Name"
+                textSize = 24f
+            }
+            editText {
+                hint = "Password"
+                textSize = 24f
+            }
+            button("Login") {
+                textSize = 26f
+            }
+        }*/
     }
 }

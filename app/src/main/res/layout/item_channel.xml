@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootCardView"
+    app:cardBackgroundColor="@android:color/darker_gray"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="6dp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iconAppCompatImageView"
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:layout_gravity="center"
+            android:background="@android:color/darker_gray"
+            android:src="@mipmap/ic_launcher"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/nameAppCompatTextView"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:background="@color/black_overlay"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:padding="4dp"
+            tools:text="Game channel"
+            android:textSize="18sp" />
+
+</android.support.v7.widget.CardView>

@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import com.simple.tv.R
 import com.simple.tv.data.ContentManager
 import com.simple.tv.data.dto.Response
+import com.simple.tv.ui.channels.ChannelsActivity
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
