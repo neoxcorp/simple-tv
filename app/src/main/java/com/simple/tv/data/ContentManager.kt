@@ -2,6 +2,7 @@ package com.simple.tv.data
 
 import android.content.Context
 import android.util.Log
+import com.crashlytics.android.Crashlytics
 import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
 import com.simple.tv.BuildConfig
@@ -32,12 +33,16 @@ class ContentManager(val context: Context) {
                 result?.let {
                     success.invoke(convertToData(it))
                 } ?: run {
+                    Crashlytics.logException(Exception("Empty list"))
+                    Crashlytics.log("Empty list")
                     error.invoke(Exception("Empty list"))
                 }
 
                 Log.e(TAG, "exception: $e")
 
                 e?.let {
+                    Crashlytics.logException(it)
+                    Crashlytics.log(it.message)
                     error.invoke(it)
                 }
             })
