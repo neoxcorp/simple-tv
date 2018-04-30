@@ -8,6 +8,7 @@ import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
 import com.simple.tv.BuildConfig
+import com.simple.tv.R
 import com.simple.tv.data.dto.Channel
 import com.simple.tv.data.dto.Response
 import com.simple.tv.ui.channels.adapter.ChannelItem
@@ -94,7 +95,9 @@ class ContentManager(val context: Context) {
 
         val api = retrofit.create(Api::class.java)
 
-        val call = api.getChannels()
+        // val call = api.getChannelsTwo(context.getString(R.string.source_id))
+        val call = api.getChannelsTwo(context.getString(R.string.source_id_two))
+
         call.enqueue(object : Callback<Response> {
             override fun onFailure(call: Call<Response>?, e: Throwable?) {
                 Log.e(TAG, "exception: $e")

@@ -13,9 +13,11 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
-        buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/"'
-        // buildConfigField 'String', 'API_URL', '"https://api.jsonbin.io/b/5ae6e26f0fb4d74cdf238969"'
+        // buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/things/"'
+        // buildConfigField 'String', 'API_URL', '"https://api.jsonbin.io/b/"'
+        buildConfigField 'String', 'API_URL', '"http://congrs.esy.es/wp-json/wp/v2/"'
     }
 
     buildTypes {
@@ -38,8 +40,13 @@ dependencies {
     def glide = '4.6.1'
     def retrofit = '2.4.0'
     def okHttp = '3.9.1'
+    def multiDex = '1.0.3'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:multidex:$multiDex"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
