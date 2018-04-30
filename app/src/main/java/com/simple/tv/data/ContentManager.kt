@@ -3,9 +3,11 @@ package com.simple.tv.data
 import android.content.Context
 import android.util.Log
 import com.crashlytics.android.Crashlytics
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
 import com.simple.tv.BuildConfig
+import com.simple.tv.data.dto.Channel
 import com.simple.tv.data.dto.Response
 import com.simple.tv.ui.channels.adapter.ChannelItem
 import com.simple.tv.ui.channels.types.Data
@@ -20,32 +22,49 @@ class ContentManager(val context: Context) {
 
     fun getListChannels(
         success: (channels: Data) -> Unit,
-        error: (exception: Exception) -> Unit
+        error: (exception: Throwable) -> Unit
     ) {
         Log.e(TAG, "getContent")
 
         Ion.with(context)
             .load(BuildConfig.API_URL)
-            .`as`(object : TypeToken<Response>() {})
+            .asJsonObject()
             .setCallback({ e, result ->
                 Log.i(TAG, "result: $result")
 
                 result?.let {
-                    success.invoke(convertToData(it))
+                    success.invoke(convertToData(parseResponse(result)))
                 } ?: run {
-                    Crashlytics.logException(Exception("Empty list"))
-                    Crashlytics.log("Empty list")
                     error.invoke(Exception("Empty list"))
                 }
 
                 Log.e(TAG, "exception: $e")
 
                 e?.let {
-                    Crashlytics.logException(it)
-                    Crashlytics.log(it.message)
                     error.invoke(it)
                 }
             })
+    }
+
+    private fun parseResponse(json: JsonObject): Response {
+        Log.e(TAG, "parseResponse -> json: $json")
+
+        val channels = arrayListOf<Channel>()
+
+        val tv_list = json["tv_list"].asJsonArray
+
+        tv_list?.let {
+            it.forEach {
+                val o = it.asJsonObject
+                channels.add(
+                    Channel(o["name"].asString,
+                        o["stream_url"].asString,
+                        o["image_url"].asString))
+            }
+
+        }
+
+        return Response(channels)
     }
 
     private fun convertToData(response: Response): Data {

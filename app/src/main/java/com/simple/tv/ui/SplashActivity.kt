@@ -5,12 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.*
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_splash.*
 import com.simple.tv.R
 import com.simple.tv.data.ContentManager
 import com.simple.tv.ui.channels.ChannelsActivity
-import com.simple.tv.ui.channels.adapter.ChannelItem
 import com.simple.tv.ui.channels.types.Data
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
@@ -63,7 +61,6 @@ class SplashActivity : AppCompatActivity() {
                 progressBar.visibility = INVISIBLE
                 tryAgainAppCompatButton.visibility = VISIBLE
                 infoMessageAppCompatTextView.text = "Something went wrong"
-                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 it.printStackTrace()
             })
     }
