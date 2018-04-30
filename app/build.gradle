@@ -73,6 +73,7 @@ dependencies {
     implementation "com.mikepenz:fastadapter-extensions:${fastAdapter}@aar"
     implementation "com.mikepenz:fastadapter-extensions-expandable:${fastAdapter}@aar"
     implementation "org.jetbrains.anko:anko:$anko"
+    implementation "org.jetbrains.anko:anko-commons:$anko"
     implementation "org.jetbrains.anko:anko-design:$anko"
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko"

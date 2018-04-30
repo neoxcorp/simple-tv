@@ -9,6 +9,7 @@ import com.simple.tv.BuildConfig
 import com.simple.tv.data.dto.Response
 import com.simple.tv.ui.channels.adapter.ChannelItem
 import com.simple.tv.ui.channels.types.Data
+import org.jetbrains.anko.toast
 
 class ContentManager(val context: Context) {
 
@@ -29,16 +30,19 @@ class ContentManager(val context: Context) {
             .`as`(object : TypeToken<Response>() {})
             .setCallback({ e, result ->
                 Log.i(TAG, "result: $result")
+                context.toast("result: $result")
 
                 result?.let {
                     success.invoke(convertToData(it))
                 } ?: run {
+                    context.toast("Empty list")
                     Crashlytics.logException(Exception("Empty list"))
                     Crashlytics.log("Empty list")
                     error.invoke(Exception("Empty list"))
                 }
 
                 Log.e(TAG, "exception: $e")
+                context.toast("exception: $e")
 
                 e?.let {
                     Crashlytics.logException(it)
