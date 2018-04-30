@@ -15,9 +15,8 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
-        // buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/things/"'
-        // buildConfigField 'String', 'API_URL', '"https://api.jsonbin.io/b/"'
-        buildConfigField 'String', 'API_URL', '"http://congrs.esy.es/wp-json/wp/v2/"'
+        // buildConfigField 'String', 'API_URL', '"https://raw.githubusercontent.com/neoxcorp/simple-tv/develop/"'
+        buildConfigField 'String', 'API_URL', '"https://raw.githubusercontent.com/neoxcorp/simple-tv/develop/channels.json"'
     }
 
     buildTypes {
@@ -38,8 +37,6 @@ dependencies {
     def anko = '0.10.5'
     def fastAdapter = '3.2.5'
     def glide = '4.6.1'
-    def retrofit = '2.4.0'
-    def okHttp = '3.9.1'
     def multiDex = '1.0.3'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -75,11 +72,6 @@ dependencies {
     implementation "com.koushikdutta.ion:ion:$ion"
     implementation "com.github.bumptech.glide:glide:$glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide"
-    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:${okHttp}"
-    implementation "com.squareup.okhttp3:okhttp:${okHttp}"
 
     // ui
     implementation "de.hdodenhof:circleimageview:$circleImageView"
