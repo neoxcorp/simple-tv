@@ -14,7 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/things/orG5.json"'
+        // buildConfigField 'String', 'API_URL', '"https://www.jasonbase.com/things/orG5.json"'
+        buildConfigField 'String', 'API_URL', '"https://api.jsonbin.io/b/5ae6e26f0fb4d74cdf238969"'
     }
 
     buildTypes {
