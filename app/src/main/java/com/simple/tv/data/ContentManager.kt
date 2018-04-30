@@ -3,6 +3,7 @@ package com.simple.tv.data
 import android.content.Context
 import android.util.Log
 import com.crashlytics.android.Crashlytics
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
 import com.simple.tv.BuildConfig
@@ -50,6 +51,12 @@ class ContentManager(val context: Context) {
                     error.invoke(it)
                 }
             })
+    }
+
+    private fun parseResponse(json: JsonObject): Response {
+        Log.e(TAG, "parseResponse -> json: $json")
+
+        return Response()
     }
 
     private fun convertToData(response: Response): Data {
