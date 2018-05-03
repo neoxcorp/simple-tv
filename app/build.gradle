@@ -85,6 +85,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko"
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko"
+    implementation "org.jetbrains.anko:anko-sdk25:$anko"
+    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko"
 
     // debug
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
