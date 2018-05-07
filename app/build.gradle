@@ -15,7 +15,6 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
-        // buildConfigField 'String', 'API_URL', '"https://raw.githubusercontent.com/neoxcorp/simple-tv/develop/"'
         buildConfigField 'String', 'API_URL', '"https://raw.githubusercontent.com/neoxcorp/simple-tv/develop/channels.json"'
     }
 
