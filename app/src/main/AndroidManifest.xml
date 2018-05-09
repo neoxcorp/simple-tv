@@ -24,7 +24,6 @@
         <activity
             android:name=".ui.SplashActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,12 +33,10 @@
         </activity>
         <activity
             android:name=".ui.channels.ChannelsActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".ui.PlayerActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme"/>
+            android:screenOrientation="landscape"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
