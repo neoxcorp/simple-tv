@@ -64,6 +64,10 @@ class PlayerActivity : AppCompatActivity(), Player.EventListener {
 
     override fun onPlayerError(error: ExoPlaybackException?) {
         Log.e(TAG, "onPlayerError")
+
+        error?.let {
+            error.printStackTrace()
+        }
     }
 
     override fun onLoadingChanged(isLoading: Boolean) {
