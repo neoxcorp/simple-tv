@@ -6,9 +6,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.upstream.BandwidthMeter
@@ -17,8 +15,15 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.simple.tv.R
 import kotlinx.android.synthetic.main.activity_player.*
+import com.google.android.exoplayer2.source.TrackGroupArray
+import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
+import com.google.android.exoplayer2.source.dash.DashMediaSource
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
 
-class PlayerActivity : AppCompatActivity() {
+
+class PlayerActivity : AppCompatActivity(), Player.EventListener {
 
     private val TAG = "PlayerActivity"
 
@@ -45,7 +50,52 @@ class PlayerActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {
+        Log.e(TAG, "onPlaybackParametersChanged")
+    }
 
+    override fun onSeekProcessed() {
+        Log.e(TAG, "onSeekProcessed")
+    }
+
+    override fun onTracksChanged(
+        trackGroups: TrackGroupArray?,
+        trackSelections: TrackSelectionArray?
+    ) {
+        Log.e(TAG, "onTracksChanged")
+    }
+
+    override fun onPlayerError(error: ExoPlaybackException?) {
+        Log.e(TAG, "onPlayerError")
+
+        error?.let {
+            error.printStackTrace()
+        }
+    }
+
+    override fun onLoadingChanged(isLoading: Boolean) {
+        Log.e(TAG, "onLoadingChanged -> isLoading: $isLoading")
+    }
+
+    override fun onPositionDiscontinuity(reason: Int) {
+        Log.e(TAG, "onPositionDiscontinuity")
+    }
+
+    override fun onRepeatModeChanged(repeatMode: Int) {
+        Log.e(TAG, "onRepeatModeChanged")
+    }
+
+    override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
+        Log.e(TAG, "onShuffleModeEnabledChanged")
+    }
+
+    override fun onTimelineChanged(timeline: Timeline?, manifest: Any?, reason: Int) {
+        Log.e(TAG, "onTimelineChanged")
+    }
+
+    override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+        Log.e(TAG, "onPlayerStateChanged")
+    }
 
     private fun playStreamVideo(url: String) {
         Log.e(TAG, "playStreamVideo -> url: $url")
@@ -58,6 +108,8 @@ class PlayerActivity : AppCompatActivity() {
         playerView.player = player
         playerView.useController = false
         player.playWhenReady = true
+
+        player.addListener(this)
 
         val bandwidthMeter = DefaultBandwidthMeter()
 
