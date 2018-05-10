@@ -19,6 +19,9 @@ import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
+
 
 class PlayerActivity : AppCompatActivity(), Player.EventListener {
 
@@ -120,12 +123,7 @@ class PlayerActivity : AppCompatActivity(), Player.EventListener {
         )
 
         val hlsMediaSource =
-            // HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
-            // ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
-            DashMediaSource
-                .Factory(DefaultDashChunkSource
-                    .Factory(dataSourceFactory), dataSourceFactory)
-                .createMediaSource(Uri.parse(url))
+            HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
 
         player.prepare(hlsMediaSource)
     }
