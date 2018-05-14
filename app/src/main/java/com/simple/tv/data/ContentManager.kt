@@ -2,7 +2,6 @@ package com.simple.tv.data
 
 import android.content.Context
 import android.util.Log
-import com.crashlytics.android.Crashlytics
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.koushikdutta.ion.Ion
@@ -28,12 +27,13 @@ class ContentManager(val context: Context) {
 
         Ion.with(context)
             .load(BuildConfig.API_URL)
-            .asJsonObject()
+            .`as`(object : TypeToken<Response>(){})
             .setCallback({ e, result ->
                 Log.i(TAG, "result: $result")
 
                 result?.let {
-                    success.invoke(convertToData(parseResponse(result)))
+                    // success.invoke(convertToData(parseResponse(result)))
+                    success.invoke(convertToData(result))
                 } ?: run {
                     error.invoke(Exception("Empty list"))
                 }
