@@ -32,7 +32,6 @@ class ContentManager(val context: Context) {
                 Log.i(TAG, "result: $result")
 
                 result?.let {
-                    // success.invoke(convertToData(parseResponse(result)))
                     success.invoke(convertToData(result))
                 } ?: run {
                     error.invoke(Exception("Empty list"))
