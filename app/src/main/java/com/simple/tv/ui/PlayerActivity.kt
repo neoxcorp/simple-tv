@@ -16,10 +16,7 @@ import com.google.android.exoplayer2.util.Util
 import com.simple.tv.R
 import kotlinx.android.synthetic.main.activity_player.*
 import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
-import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 
 
