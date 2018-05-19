@@ -31,10 +31,10 @@ class PlayerActivity : AppCompatActivity(), Player.EventListener {
 
         fun newInstance(context: Context, sourceUrl: String): Intent {
             return Intent(context, PlayerActivity::class.java)
-                .apply {
-                    this.putExtra(SOURCE_URL, sourceUrl)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }
+                    .apply {
+                        this.putExtra(SOURCE_URL, sourceUrl)
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
         }
     }
 
@@ -56,8 +56,8 @@ class PlayerActivity : AppCompatActivity(), Player.EventListener {
     }
 
     override fun onTracksChanged(
-        trackGroups: TrackGroupArray?,
-        trackSelections: TrackSelectionArray?
+            trackGroups: TrackGroupArray?,
+            trackSelections: TrackSelectionArray?
     ) {
         Log.e(TAG, "onTracksChanged")
     }
@@ -111,16 +111,16 @@ class PlayerActivity : AppCompatActivity(), Player.EventListener {
         val bandwidthMeter = DefaultBandwidthMeter()
 
         val dataSourceFactory = DefaultDataSourceFactory(
-            this,
-            Util.getUserAgent(
                 this,
-                "mediaPlayerSample"
-            ),
-            bandwidthMeter
+                Util.getUserAgent(
+                        this,
+                        getString(R.string.app_name)
+                ),
+                bandwidthMeter
         )
 
         val hlsMediaSource =
-            HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
+                HlsMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(url))
 
         player.prepare(hlsMediaSource)
     }
