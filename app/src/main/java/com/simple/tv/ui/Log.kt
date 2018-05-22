@@ -1,3 +1,8 @@
 package com.simple.tv.ui
 
-object Log
+import com.simple.tv.BuildConfig
+
+object Log {
+
+    fun isShowLog() = BuildConfig.DEBUG
+}
