@@ -10,4 +10,7 @@ object Log {
 
     fun i() {
     }
+
+    fun d() {
+    }
 }
