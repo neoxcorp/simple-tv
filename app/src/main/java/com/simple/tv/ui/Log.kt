@@ -13,4 +13,7 @@ object Log {
 
     fun d() {
     }
+
+    fun e() {
+    }
 }
