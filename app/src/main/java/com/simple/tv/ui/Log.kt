@@ -4,7 +4,7 @@ import com.simple.tv.BuildConfig
 
 object Log {
 
-    private const val TAG = "LOG_TAG"
+    private const val TAG = "DEBUG_LOG_TAG"
 
     fun isShowLog() = BuildConfig.DEBUG
 
