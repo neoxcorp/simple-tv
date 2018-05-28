@@ -8,7 +8,7 @@ object Log {
 
     fun isShowLog() = BuildConfig.DEBUG
 
-    fun i() {
+    fun i(message: String) {
     }
 
     fun d() {
