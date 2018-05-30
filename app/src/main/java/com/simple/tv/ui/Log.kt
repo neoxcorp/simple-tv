@@ -11,7 +11,7 @@ object Log {
     fun i(message: String) {
     }
 
-    fun d() {
+    fun d(message: String) {
     }
 
     fun e() {
