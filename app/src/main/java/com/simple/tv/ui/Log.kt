@@ -14,6 +14,6 @@ object Log {
     fun d(message: String) {
     }
 
-    fun e() {
+    fun e(message: String) {
     }
 }
