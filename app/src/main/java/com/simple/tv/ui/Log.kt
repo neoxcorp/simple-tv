@@ -1,5 +1,6 @@
 package com.simple.tv.ui
 
+import android.util.Log
 import com.simple.tv.BuildConfig
 
 object Log {
@@ -9,6 +10,9 @@ object Log {
     fun isShowLog() = BuildConfig.DEBUG
 
     fun i(message: String) {
+        if (isShowLog()) {
+            Log.i(TAG, message)
+        }
     }
 
     fun d(message: String) {
