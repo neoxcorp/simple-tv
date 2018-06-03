@@ -16,6 +16,9 @@ object Log {
     }
 
     fun d(message: String) {
+        if (isShowLog()) {
+            Log.d(TAG, message)
+        }
     }
 
     fun e(message: String) {
