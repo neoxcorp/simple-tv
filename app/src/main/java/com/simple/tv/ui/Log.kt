@@ -22,5 +22,8 @@ object Log {
     }
 
     fun e(message: String) {
+        if (isShowLog()) {
+            Log.e(TAG, message)
+        }
     }
 }
